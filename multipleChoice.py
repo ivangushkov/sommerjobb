@@ -1,0 +1,110 @@
+import linecache
+
+def getCorrectAnswerIndex(qLst): # gives where the answer starts, and the index of correct answer
+    for i in range(len(qLst)):
+        if "correctAnswer" in qLst[i]:
+            return int(qLst[i][-2]), qLst.index(qLst[i])
+
+def getBodyStartEnd(qLst): # gives where the body starts and ends
+    for i in range(len(qLst)):
+        if "questionBody" in qLst[i]:
+            bodyStart = i
+        elif "bodyEnd" in qLst[i]:
+            bodyEnd = i
+    return bodyStart, bodyEnd
+
+def formatAnswerLine(aLine): # formats an answer line that is not the correct answer
+    while aLine[0] != " ":
+        aLine = aLine[1::]
+    aLine.strip()
+    return str('\\answer ' + aLine)
+
+def formatCorrectAnswerLine(aLine): # formats an answer line that is the correct answer
+    while aLine[0] != " ":
+        aLine = aLine[1 : :]
+    aLine.strip()
+    return "\\correctanswer " + aLine
+
+def getAnswerLst(aLst, correctIndex): # gives a list with the answers formated correctly
+    answerLst = []
+    for i in range(1,len(aLst)):
+        if i == correctIndex:
+            answerLst.append(formatCorrectAnswerLine(aLst[i]))
+        else:
+            answerLst.append(formatAnswerLine(aLst[i]))
+    return answerLst
+
+def getQuestionBody(bLst): # gives one string with the question body
+    questionBody = ""
+    for i in range(len(bLst)):
+        questionBody = str(questionBody) + str(bLst[i])
+    return questionBody
+
+def questionAsseser(qFile, qLine):
+    #get all the lines from file, find range, define list we iterate over
+    lns = linecache.getlines(qFile)
+    qendLine = qLine
+    while linecache.getline(qFile,qendLine) != "questionBruhEnd\n":
+        qendLine += 1
+
+    qLst = lns[qLine:qendLine]
+    # The easy stuff: question units and course
+    contentUnits = qLst[1]
+    questionCourse = qLst[2]
+
+    # figure out and format body
+    bodyStart, bodyEnd = getBodyStartEnd(qLst)
+    bLst = qLst[bodyStart + 1:bodyEnd]
+    questionBody = getQuestionBody(bLst)
+
+    #Figure out and format answers
+    correctIndex, ansStart = getCorrectAnswerIndex(qLst)
+    aLst = qLst[ansStart:len(qLst)-1]
+    answerLst = getAnswerLst(aLst, correctIndex)
+
+
+    return contentUnits, questionCourse, questionBody, answerLst
+
+
+def writingFunction(formatedFile, contentUnits, questionCourse, questionBody, answerLst, authorMail):
+    f = open(formatedFile, "a")
+    string = ("\\begin{IndexedQuestion}\n"
+    "   \QuestionContentUnits{" f"{contentUnits.strip()}""}\n"
+    "   \QuestionCourses{" f"{questionCourse.strip()}""}\n"
+    "   \QuestionType{multiple choice}\n"
+    "   \QuestionBody{\n"
+    "       "f"{questionBody}" "\n"
+    "       }% DO NOT INCLUDE FIGURES HERE\n"
+    "       \QuestionPotentialAnswers{\n")
+    "f"
+    for i in range(len(answerLst)):
+        string += "            " + answerLst[i]
+
+    string += ("       } % ONLY IF TYPE = MULTIPLE CHOICE\n"
+    "       \QuestionAuthorsEmails{" f"{authorMail}" "}\n"
+    "       \QuestionLanguage{Norwegian}\n"
+    "       \end{IndexedQuestion}\n"
+    "\n\n")
+    f.write(string)
+    f.close()
+#answers = str(input("Provide the answer list: "))
+#correctIndex = int(input("The correct answer is on row: "))
+
+fRaw = "questionsTest.txt"
+fMC = "MultipleChoice.tex"
+
+f = open(fMC, "w")
+f.close()
+
+authorMail = "ivanig" #string with mail here
+#questionNumber = 0 # Somehow get it from Raw
+# For loop over RAW to get question number
+
+with open(fRaw,"r") as questionFile:
+    k = 0
+    for line in questionFile:
+        if line == "questionBruh:\n":
+            contentUnits, questionCourse, questionBody, answerLst = questionAsseser(fRaw, k)
+            writingFunction(fMC,contentUnits,questionCourse,questionBody,answerLst,authorMail)
+        k += 1
+questionFile.close()

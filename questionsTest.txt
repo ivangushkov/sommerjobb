@@ -1,0 +1,184 @@
+
+How to format:
+1) question must start and end with "questionBruh:" and "questionBruhEnd"
+2) second line will always be filled to question units, third line is always question course
+3) question body must be between "questionBody" and "bodyEnd"
+4) correctAnswer # tells the script that answers are about to start and # which index of the answer is correct 
+(so 1 means A, 3 means C etc)
+5) The question list will automatically be made into the correct format, no mater what is in front of the answer as long as there
+is a space so: "\somethingwhatever answer" is correct but "\somethingwhateveranswer" is not. You must always have at least a space
+at the start of a question line, it does not matter how much space so: "answer" is not correct but:" answer" or "    answer" 
+will work. Just tab all the answers and it will work.
+6) Run the script on this file to see the results and have fun!
+
+Template:
+
+questionBruh:
+Question Units
+Question Course
+questionBody
+This is some nice body for this question
+bodyEnd
+correctAnswer 2
+\item answer#
+\item this will be made into correct answer
+\item answer#
+\item answer#
+\item answer#
+questionBruhEnd
+
+Examples from TTK2016:
+
+questionBruh:
+differensial likninger
+Systemteori Grunnkurs
+questionBody
+La $x$ adlyde differensialligningen $x=-2\dot{x}$. Da er grenseverdien $\lim_{t\rightarrow \infty} x(t)$ lik
+bodyEnd
+correctAnswer 2
+\item $-\infty$
+\item $0$
+\item $1$
+\item $e$
+\item $\infty$
+questionBruhEnd
+
+questionBruh:
+komplekse tall
+Systemteori Grunnkurs
+questionBody
+Her er 5 komplekse tall oppgitt, hvorav 4 er identiske. Hvilket tall er ulik de andre?
+bodyEnd
+correctAnswer 3
+\item $-e^{-\imag \pi / 2}$
+\item $e^{\imag \pi / 2}$
+\item $\imag^4$
+\item $(-\imag)^2$
+\item $\dfrac{(1+\imag)^2}{2}$
+questionBruhEnd
+
+
+questionBruh:
+residu
+Systemteori Grunnkurs
+questionBody
+Hva er en residu?
+bodyEnd
+correctAnswer 5
+\item En pol i høyre halvplan.
+\item Avviket mellom referansen og ønsket verdi i et reguleringssystem.
+\item En del av transferfunksjonen for propert system.
+\item En egenverdi som har 2 eller flere lineært uavhengige egenvektorer.
+\item Koeffisienten til første negative potens i Laurentrekken.
+questionBruhEnd
+
+questionBruh:
+transferfunksjoner, nullpunkter
+Systemteori Grunnkurs
+questionBody
+En transferfunksjon $H(s)$ har et nullpunkt i høyre halvplan. Hva kan du da si om systemet?
+bodyEnd
+correctAnswer 4
+\item Systemet er asymptotisk stabilt.
+\item Systemet er ustabilt.
+\item Systemet er marginalt stabilt.
+\item Systemet er ikke-minimum-fase.
+\item Impulsresponsen vil oscillere i all framtid.
+questionBruhEnd
+
+
+questionBruh:
+transferfunksjoner
+Systemteori Grunnkurs
+questionBody
+Hvilket av følgende systemer er en mulig realisasjon av transferfunksjonen
+\begin{align*}
+H(s) = \frac{Y(s)}{U(s)} =\frac{1}{s(s+2)}
+\end{align*}
+bodyEnd
+correctAnswer 2
+\item $\ddot{y} - 2{y} = u$
+\item $\ddot{y} + 2\dot{y} = u$
+\item $\ddot{y} + \dot{y} = \dot{u}$
+\item $y^{(3)} + 2 y = u$
+\item $2\ddot{y} - {y} = u$
+questionBruhEnd
+
+
+
+questionBruh:
+frekvensrespons
+Systemteori Grunnkurs
+questionBody
+Frekvensresponsen til en tidsforsinkelse $e^{-\tau s}$ har amplitudeforhold og faseforskyvning
+bodyEnd
+correctAnswer 5
+\item henholdsvis $\dfrac{1}{\omega-\tau}$ og $\atan \left( \frac{\omega}{\tau}\right)$
+\item henholdsvis $\dfrac{1}{\omega+\tau}$ og $\atan \left( \frac{\tau}{\omega}\right)$
+\item henholdsvis $\omega+\tau$ og $\tau-\omega$.
+\item henholdsvis $0$ og $-\infty$.
+\item henholdsvis $1$ og $-\omega \tau$.
+questionBruhEnd
+
+
+
+
+questionBruh:
+matriser
+Systemteori Grunnkurs
+questionBody
+La $\mat{A}$ og $\mat{B}$ være $2 \times 2$-matriser. Hvis determinanten til $\mat{A}$ er 2 og determinanten til $\mat{B}$ er 3, hva er determinanten til
+$\mat{C}=-2 \mat{A}^{-1} \mat{B}^{\transpose}$?
+bodyEnd
+correctAnswer 3
+\item $3$
+\item $-3$
+\item $6$
+\item $-6$
+\item $0$
+questionBruhEnd
+
+
+questionBruh:
+linear avhengighet, linear algebra
+Systemteori Grunnkurs
+questionBody
+For hvilke(n) $c$ er vektorene $\mat{v}_1 = [1,3,-3]^{\transpose}$, $\mat{v}_2 = [-2,4,1]^{\transpose}$ og $\mat{v}_3 = [-1,1,c]^{\transpose}$ lineært uavhengige?
+bodyEnd
+correctAnswer 3
+\item Ingen $c$
+\item $c=1$
+\item $c\neq 1$
+\item $c=10$
+\item Alle $c$
+questionBruhEnd
+
+
+questionBruh:
+differensialligninger, tilstandsrom
+Systemteori Grunnkurs
+questionBody
+Hvilken differensialligning er $\state(t) = e^t \left( c_1 e^{t \sqrt{2}} + c_2 e^{-t \sqrt{2}}  \right)$ en løsning av?
+bodyEnd
+correctAnswer 1
+item $\ddot{\state}  -2 \dot{\state}  - \state = 0$
+\item $\dot{\state} + \frac{1}{2} \state = 0$
+\item $\ddot{\state} - \dot{\state} + 2 \state = 0$
+\item $\ddot{\state} + 2 \dot{\state} + \state = 0$
+\item $\dot{\state} =  e^{-t}$
+questionBruhEnd
+
+
+questionBruh:
+konvolusjonsintegral
+Systemteori Grunnkurs
+questionBody
+Hvilken egenskap gjelder for konvolusjonen $f \conv g = \int_0^t f(\tau) g(t-\tau) \mathrm{d} \tau$?
+bodyEnd
+correctAnswer 2
+\item $f \conv g = - g \conv f$
+\item $\laplace\{ f \conv g\} = \laplace\{ f \}\laplace\{ g\}$
+\item $f \conv g = f \cdot g$
+\item $\laplace\{ f \conv g\} = \laplace^{-1}\{ g \conv f\} $
+\item $f \conv g > f \cdot g$
+questionBruhEnd
