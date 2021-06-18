@@ -27,7 +27,7 @@ correctAnswer 2
 \item answer#
 questionBruhEnd
 
-Examples from TTK2016:
+Examples from TTK4225 2016:
 
 questionBruh:
 differensial likninger
