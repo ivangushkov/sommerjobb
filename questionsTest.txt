@@ -8,7 +8,7 @@ How to format:
 5) The question list will automatically be made into the correct format, no mater what is in front of the answer as long as there
 is a space so: "\somethingwhatever answer" is correct but "\somethingwhateveranswer" is not. You must always have at least a space
 at the start of a question line, it does not matter how much space so: "answer" is not correct but:" answer" or "    answer" 
-will work. Just tab all the answers and it will work.
+will work. Just add a space in front and it will work. Tabbing it will not work for some reason.
 6) Run the script on this file to see the results and have fun!
 
 Template:
