@@ -1,9 +1,21 @@
 import linecache
 
+def formatCorrectIndexLst(line):
+    retLst = []
+    for i in range(0, len(line), 2):
+        retLst.append(int(line[i]))
+    return retLst
+def formatCorrectIndex(line):
+    for i in range(len("correctAnswer ")):
+        line = line[1::]
+    line.strip()
+    return line
 def getCorrectAnswerIndex(qLst): # gives where the answer starts, and the index of correct answer
     for i in range(len(qLst)):
         if "correctAnswer" in qLst[i]:
-            return int(qLst[i][-2]), qLst.index(qLst[i])
+            indexLst = formatCorrectIndex(qLst[i])
+            retlst = formatCorrectIndexLst(indexLst)
+            return retlst, qLst.index(qLst[i])
 
 def getBodyStartEnd(qLst): # gives where the body starts and ends
     for i in range(len(qLst)):
@@ -25,10 +37,10 @@ def formatCorrectAnswerLine(aLine): # formats an answer line that is the correct
     aLine.strip()
     return "\\correctanswer " + aLine
 
-def getAnswerLst(aLst, correctIndex): # gives a list with the answers formated correctly
+def getAnswerLst(aLst, correctIndexLst): # gives a list with the answers formated correctly
     answerLst = []
     for i in range(1,len(aLst)):
-        if i == correctIndex:
+        if i in correctIndexLst:
             answerLst.append(formatCorrectAnswerLine(aLst[i]))
         else:
             answerLst.append(formatAnswerLine(aLst[i]))
@@ -58,9 +70,9 @@ def questionAsseser(qFile, qLine):
     questionBody = getQuestionBody(bLst)
 
     #Figure out and format answers
-    correctIndex, ansStart = getCorrectAnswerIndex(qLst)
+    correctIndexLst, ansStart = getCorrectAnswerIndex(qLst)
     aLst = qLst[ansStart:len(qLst)-1]
-    answerLst = getAnswerLst(aLst, correctIndex)
+    answerLst = getAnswerLst(aLst, correctIndexLst)
 
 
     return contentUnits, questionCourse, questionBody, answerLst

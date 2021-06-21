@@ -3,8 +3,8 @@ How to format:
 1) question must start and end with "questionBruh:" and "questionBruhEnd"
 2) second line will always be filled to question units, third line is always question course
 3) question body must be between "questionBody" and "bodyEnd"
-4) correctAnswer # tells the script that answers are about to start and # which index of the answer is correct 
-(so 1 means A, 3 means C etc)
+4) "correctAnswer #,#,#" tells the script that answers are about to start and "#,#,#" which indeces of the answer are correct 
+(so 1 means A, 3,4 means C,D etc). Keep the indeces seperated by commas and no space between the commas.
 5) The question list will automatically be made into the correct format, no mater what is in front of the answer as long as there
 is a space so: "\somethingwhatever answer" is correct but "\somethingwhateveranswer" is not. You must always have at least a space
 at the start of a question line, it does not matter how much space so: "answer" is not correct but:" answer" or "    answer" 
@@ -35,7 +35,7 @@ Systemteori Grunnkurs
 questionBody
 La $x$ adlyde differensialligningen $x=-2\dot{x}$. Da er grenseverdien $\lim_{t\rightarrow \infty} x(t)$ lik
 bodyEnd
-correctAnswer 2
+correctAnswer 2,4
 \item $-\infty$
 \item $0$
 \item $1$
@@ -49,12 +49,12 @@ Systemteori Grunnkurs
 questionBody
 Her er 5 komplekse tall oppgitt, hvorav 4 er identiske. Hvilket tall er ulik de andre?
 bodyEnd
-correctAnswer 3
-\item $-e^{-\imag \pi / 2}$
-\item $e^{\imag \pi / 2}$
-\item $\imag^4$
-\item $(-\imag)^2$
-\item $\dfrac{(1+\imag)^2}{2}$
+correctAnswer 5,3
+\answer $-e^{-\imag \pi / 2}$
+\answer $e^{\imag \pi / 2}$
+\correctanswer $\imag^4$
+\answer $(-\imag)^2$
+\anwer $\dfrac{(1+\imag)^2}{2}$
 questionBruhEnd
 
 
@@ -78,7 +78,7 @@ Systemteori Grunnkurs
 questionBody
 En transferfunksjon $H(s)$ har et nullpunkt i høyre halvplan. Hva kan du da si om systemet?
 bodyEnd
-correctAnswer 4
+correctAnswer 4,1
 \item Systemet er asymptotisk stabilt.
 \item Systemet er ustabilt.
 \item Systemet er marginalt stabilt.
@@ -96,7 +96,7 @@ Hvilket av følgende systemer er en mulig realisasjon av transferfunksjonen
 H(s) = \frac{Y(s)}{U(s)} =\frac{1}{s(s+2)}
 \end{align*}
 bodyEnd
-correctAnswer 2
+correctAnswer 2,3
 \item $\ddot{y} - 2{y} = u$
 \item $\ddot{y} + 2\dot{y} = u$
 \item $\ddot{y} + \dot{y} = \dot{u}$
